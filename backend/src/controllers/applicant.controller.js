@@ -1,8 +1,13 @@
 const { applicantService } = require('../services')
 
-const findAll = async () => {
-  const data = await applicantService.findAll()
-  return data
+const findAll = async (req, res) => {
+  const content = await applicantService.findAll()
+
+  res.status(200).json({
+    statusCode: res.statusCode,
+    message: 'Aspirantes cargados exitosamente',
+    content
+  })
 }
 
 const applicantController = {
