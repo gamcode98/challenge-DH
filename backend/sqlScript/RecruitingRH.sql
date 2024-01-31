@@ -18,9 +18,9 @@ CREATE TABLE `professions` (
 );
 
 CREATE TABLE `applicants_professions` (
-   `applicant_id` ,
-   `profession_id` 
-   PRIMARY KEY ()
+   `applicant_id` INT,
+   `profession_id` INT,
+   PRIMARY KEY (`applicant_id`, `profession_id`)
 );
 
 
