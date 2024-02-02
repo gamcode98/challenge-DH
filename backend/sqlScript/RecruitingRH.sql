@@ -1,8 +1,8 @@
 CREATE TABLE `applicants` (
    `id` INT AUTO_INCREMENT,
    `dni` VARCHAR(255),
-   `firstName` VARCHAR(255),
-   `lastName` VARCHAR(255),
+   `first_name` VARCHAR(255),
+   `last_name` VARCHAR(255),
    `email` VARCHAR(255),
    `cellphone` VARCHAR(255),
    `image` VARCHAR(255),

@@ -13,13 +13,15 @@ module.exports = (sequelize, dataTypes) => {
       allowNull: false,
       autoIncrement: true
     },
-    firstname: {
+    firstName: {
       type: dataTypes.STRING(255),
-      allowNull: false
+      allowNull: false,
+      field: 'first_name'
     },
-    lastname: {
+    lastName: {
       type: dataTypes.STRING(255),
-      allowNull: false
+      allowNull: false,
+      field: 'last_name'
     },
     email: {
       type: dataTypes.STRING(255),
@@ -39,6 +41,10 @@ module.exports = (sequelize, dataTypes) => {
     },
     birthdate: {
       type: dataTypes.DATE,
+      allowNull: false
+    },
+    dni: {
+      type: dataTypes.STRING(255),
       allowNull: false
     }
   }
