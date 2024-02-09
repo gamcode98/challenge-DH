@@ -55,6 +55,12 @@ module.exports = (sequelize, dataTypes) => {
   }
 
   const Applicant = sequelize.define(alias, cols, config)
+  Applicant.associate = (models) => {
+    Applicant.hasMany(models. ApplicantsProfessions, {
+      foreignKey: 'applicant_id'
+      as: 'applicant'
+    })
+  }
 
   return Applicant
 }
