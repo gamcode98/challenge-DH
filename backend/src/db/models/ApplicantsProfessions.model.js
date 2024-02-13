@@ -5,37 +5,33 @@
  */
 
 module.exports = (sequelize, dataTypes) => {
-    let alias = 'ApplicantsProfessions'
-    let cols = {
-      applicant_id: {
-        type: dataTypes.INTEGER(10).UNSIGNED,
-        primaryKey: true,
-        allowNull: false,
-        autoIncrement: false
-      },
-      profession_id: {
-        type: dataTypes.INTEGER(10).UNSIGNED,
-        primaryKey: true,
-        allowNull: false,
-        autoIncrement: false
-      }    
+  const alias = 'ApplicantsProfessions'
+  const cols = {
+    applicantId: {
+      type: dataTypes.INTEGER(10).UNSIGNED,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: false,
+      field: 'applicant_id'
+    },
+    professionId: {
+      type: dataTypes.INTEGER(10).UNSIGNED,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: false,
+      field: 'profession_id'
     }
-  
-    let config = {
-      timestamps: false,
-      deletedAt: false
-    }
-  
-    const ApplicantsProfessions = sequelize.define(alias, cols, config)
-    ApplicantsProfessions.associate = (models) => {
-      ApplicantsProfessions.belongsTo(models.Applicant, {
-        as: 'Applicant'
-        foreignKey: 'applicant_id'
-      }),
-      ApplicantsProfessions.belongsTo(models.Applicant, {
-        as: 'Profession'
-        foreignKey: 'profession_id'
-      })
-    }
-    return ApplicantsProfessions
+  }
+
+  const config = {
+    timestamps: false,
+    deletedAt: false
+  }
+
+  const ApplicantsProfessions = sequelize.define(alias, cols, config)
+   ApplicantsProfessions.associate = (models) => {
+    models.Applicant.belongsToMany(models.Professions, { through: ApplicantsProfessions })
+    models.Professions.belongsToMany(models.Applicant, { through: ApplicantsProfessions })
+  } 
+  return ApplicantsProfessions
 }

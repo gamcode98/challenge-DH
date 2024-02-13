@@ -1,5 +1,6 @@
 const { Router } = require('express')
-const { applicantRouter } = require('.')
+const { applicantRouter } = require('./applicant.routes')
+const { professionsRouter } = require('./professions.routes')
 
 const routerApi = (app) => {
   const router = Router()
@@ -7,6 +8,7 @@ const routerApi = (app) => {
   app.use('/api/v1', router)
 
   router.use('/applicants', applicantRouter)
+  router.use('/professions', professionsRouter)
 }
 
 module.exports = { routerApi }

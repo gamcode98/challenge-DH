@@ -1,6 +1,7 @@
 const { faker } = require('@faker-js/faker')
 
 const { applicantService } = require('../services/applicant.services')
+const { professionsService } = require('../services/professions.services')
 
 const seed = async () => {
   console.log('Generating applicants...')
@@ -28,11 +29,14 @@ const seed = async () => {
     })
 
     await applicantService.createMany(applicants)
+    const professions = [{ name: 'Enfermera' }, { name: 'Ingeniero' }, { name: 'Arquitecto' }]
+    await professionsService.createMany(professions)
   } catch (error) {
     console.error(error)
   }
 
   console.log('Applicants generated')
+
 }
 
 seed()
