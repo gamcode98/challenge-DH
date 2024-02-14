@@ -1,4 +1,4 @@
-const { professionsService } = require('../services')
+const { professionsService } = require('../services/professions.services')
 
 const findAll = async (req, res) => {
   const content = await professionsService.findAll()

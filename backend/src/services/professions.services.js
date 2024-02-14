@@ -1,10 +1,10 @@
-const db = require('../db/models')
+const { Profession, Applicant } = require('../db/models')
 
 const findAll = async () => {
-  const professions = await db.Profession.findAll(
+  const professions = await Profession.findAll(
     {
       include: {
-        model: db.Applicant
+        model: Applicant
       }
     }
   )
@@ -12,7 +12,7 @@ const findAll = async () => {
 }
 
 const createMany = async (data) => {
-  const professions = await db.Profession.bulkCreate(data)
+  const professions = await Profession.bulkCreate(data)
   return professions
 }
 
