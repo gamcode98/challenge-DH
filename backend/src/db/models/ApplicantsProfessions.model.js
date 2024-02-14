@@ -7,19 +7,31 @@
 module.exports = (sequelize, dataTypes) => {
   const alias = 'ApplicantsProfessions'
   const cols = {
-    applicantId: {
+    id: {
       type: dataTypes.INTEGER(10).UNSIGNED,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: false,
-      field: 'applicant_id'
+      autoIncrement: true
     },
-    professionId: {
+    applicant_id: {
       type: dataTypes.INTEGER(10).UNSIGNED,
-      primaryKey: true,
       allowNull: false,
       autoIncrement: false,
-      field: 'profession_id'
+      field: 'applicant_id',
+      references: {
+        model: 'Applicant',
+        key: 'id'
+      }
+    },
+    profession_id: {
+      type: dataTypes.INTEGER(10).UNSIGNED,
+      allowNull: false,
+      autoIncrement: false,
+      field: 'profession_id',
+      references: {
+        model: 'Profession',
+        key: 'id'
+      }
     }
   }
 
@@ -29,9 +41,5 @@ module.exports = (sequelize, dataTypes) => {
   }
 
   const ApplicantsProfessions = sequelize.define(alias, cols, config)
-   ApplicantsProfessions.associate = (models) => {
-    models.Applicant.belongsToMany(models.Professions, { through: ApplicantsProfessions })
-    models.Professions.belongsToMany(models.Applicant, { through: ApplicantsProfessions })
-  } 
   return ApplicantsProfessions
 }

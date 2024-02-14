@@ -5,7 +5,7 @@
  */
 
 module.exports = (sequelize, dataTypes) => {
-  const alias = 'Professions'
+  const alias = 'Profession'
   const cols = {
     id: {
       type: dataTypes.INTEGER(10).UNSIGNED,
@@ -24,13 +24,13 @@ module.exports = (sequelize, dataTypes) => {
     deletedAt: false
   }
 
-  const Professions = sequelize.define(alias, cols, config)
-/*   Professions.associate = (models) => {
-    Professions.hasMany(models.ApplicantsProfessions, {
-      foreignKey: 'profession_id',
-      as: 'ApplicantsProfessions'
+  const Profession = sequelize.define(alias, cols, config)
+  Profession.associate = (models) => {
+    Profession.belongsToMany(models.Applicant, {
+      through: 'ApplicantsProfessions',
+      foreignKey: 'profession_id'
     })
-  } */
+  }
 
-  return Professions
+  return Profession
 }

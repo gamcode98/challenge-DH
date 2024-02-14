@@ -3,7 +3,7 @@ const db = require('./../db/models')
 const findAll = async () => {
   const applicants = await db.Applicant.findAll({
     include: {
-      model: db.Professions
+      model: db.Profession
     }
   })
   return applicants

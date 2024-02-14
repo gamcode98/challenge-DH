@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS `RecruitingRH`;
+CREATE DATABASE IF NOT EXISTS `RecruitingRH`;
+USE `RecruitingRH`;
+
 CREATE TABLE `applicants` (
    `id` INT AUTO_INCREMENT,
    `dni` VARCHAR(255),
@@ -17,13 +21,14 @@ CREATE TABLE `professions` (
    PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `applicants_professions` (
+CREATE TABLE `applicantsprofessions` (
+   `id` INT AUTO_INCREMENT,
    `applicant_id` INT,
    `profession_id` INT,
-   PRIMARY KEY (`applicant_id`, `profession_id`)
+   PRIMARY KEY (`id`)
 );
 
 
-ALTER TABLE `applicants_professions` ADD CONSTRAINT `FK_096798bb-8717-42f0-8e69-d3b4611eef4c` FOREIGN KEY (`applicant_id`) REFERENCES `applicants`(`id`)  ;
+ALTER TABLE `applicantsprofessions` ADD CONSTRAINT `FK_096798bb-8717-42f0-8e69-d3b4611eef4c` FOREIGN KEY (`applicant_id`) REFERENCES `applicants`(`id`)  ;
 
-ALTER TABLE `applicants_professions` ADD CONSTRAINT `FK_c5df186d-70a5-44d2-aa7d-982ad961a4e0` FOREIGN KEY (`profession_id`) REFERENCES `professions`(`id`)  ;
+ALTER TABLE `applicantsprofessions` ADD CONSTRAINT `FK_c5df186d-70a5-44d2-aa7d-982ad961a4e0` FOREIGN KEY (`profession_id`) REFERENCES `professions`(`id`)  ;

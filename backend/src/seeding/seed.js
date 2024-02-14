@@ -35,7 +35,7 @@ const seed = async () => {
     console.error(error)
   }
 
-  console.log('Applicants generated')
+  console.log('Applicants and professions generated')
 
 }
 
