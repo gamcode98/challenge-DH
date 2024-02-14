@@ -4,13 +4,20 @@ const { applicantService } = require('../services/applicant.services')
 const { professionsService } = require('../services/professions.services')
 
 const seed = async () => {
-  console.log('Generating applicants...')
-
   const limit = 10
 
   const url = `https://randomuser.me/api/1.4/?page=2&results=${limit}&seed=applicants&inc=gender,name,email,cell,picture,dob`
 
   try {
+    const searchedApplicants = await applicantService.findAll()
+
+    if (searchedApplicants.length > 0) {
+      console.log('\nSeed already generated')
+      return
+    }
+
+    console.log('Generating seed...')
+
     const data = await fetch(url)
 
     const { results } = await data.json()
@@ -28,7 +35,8 @@ const seed = async () => {
       }
     })
 
-    await applicantService.createMany(applicants)
+    const createdApplicants = await applicantService.createMany(applicants)
+
     const professions = [
       { name: 'Médico' },
       { name: 'Enfermera' },
@@ -61,12 +69,23 @@ const seed = async () => {
       { name: 'Fontanero' }
       // Añadir mas de ser necesario
     ]
-    await professionsService.createMany(professions)
+
+    const createdProfessions = await professionsService.createMany(professions)
+
+    for (const applicant of createdApplicants) {
+      const randomNumber = faker.number.int({ min: 1, max: 3 })
+
+      const index = faker.number.int({ min: 0, max: createdProfessions.length - 4 })
+
+      const randomProfessions = createdProfessions.slice(index, index + randomNumber)
+
+      await applicant.addProfession(randomProfessions)
+    }
   } catch (error) {
     console.error(error)
   }
 
-  console.log('Applicants and professions generated')
+  console.log('Seed generated')
 }
 
 seed()

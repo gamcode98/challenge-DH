@@ -46,18 +46,34 @@ module.exports = (sequelize, dataTypes) => {
     dni: {
       type: dataTypes.STRING(255),
       allowNull: false
+    },
+    createdAt: {
+      type: dataTypes.DATE,
+      allowNull: false,
+      field: 'created_at'
+    },
+    updatedAt: {
+      type: dataTypes.DATE,
+      allowNull: false,
+      field: 'updated_at'
+    },
+    deletedAt: {
+      type: dataTypes.DATE,
+      allowNull: true,
+      field: 'deleted_at'
     }
   }
 
   const config = {
-    timestamps: false,
-    deletedAt: false
+    timestamps: true,
+    deletedAt: true,
+    underscored: true
   }
 
   const Applicant = sequelize.define(alias, cols, config)
   Applicant.associate = (models) => {
     Applicant.belongsToMany(models.Profession, {
-      through: 'ApplicantsProfessions',
+      through: 'applicants_professions',
       foreignKey: 'applicant_id'
     })
   }
