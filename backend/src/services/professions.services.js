@@ -11,7 +11,7 @@ const findAll = async () => {
   return professions
 }
 const createMany = async (data) => {
-  const professions = await db.Professions.bulkCreate(data)
+  const professions = await db.Profession.bulkCreate(data)
   return professions
 }
 

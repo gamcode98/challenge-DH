@@ -29,14 +29,44 @@ const seed = async () => {
     })
 
     await applicantService.createMany(applicants)
-    const professions = [{ name: 'Enfermera' }, { name: 'Ingeniero' }, { name: 'Arquitecto' }]
+    const professions = [
+      { name: 'Médico' },
+      { name: 'Enfermera' },
+      { name: 'Ingeniero' },
+      { name: 'Arquitecto' },
+      { name: 'Abogado' },
+      { name: 'Profesor' },
+      { name: 'Científico' },
+      { name: 'Diseñador' },
+      { name: 'Programador' },
+      { name: 'Artista' },
+      { name: 'Músico' },
+      { name: 'Chef' },
+      { name: 'Piloto' },
+      { name: 'Astronauta' },
+      { name: 'Veterinario' },
+      { name: 'Psicólogo' },
+      { name: 'Actor' },
+      { name: 'Escritor' },
+      { name: 'Periodista' },
+      { name: 'Bombero' },
+      { name: 'Policía' },
+      { name: 'Paramédico' },
+      { name: 'Farmacéutico' },
+      { name: 'Fotógrafo' },
+      { name: 'Terapeuta' },
+      { name: 'Electricista' },
+      { name: 'Fontanero' },
+      { name: 'Carpintero' },
+      { name: 'Fontanero' }
+      // Añadir mas de ser necesario
+    ]
     await professionsService.createMany(professions)
   } catch (error) {
     console.error(error)
   }
 
   console.log('Applicants and professions generated')
-
 }
 
 seed()
