@@ -8,7 +8,9 @@ import Applicant from './pages/applicant/applicant.jsx'
 function App(){
   return(
     <div>
-      hola
+      <Header/>
+      <ApplicantList/>
+      <Footer/>
     </div>
   );
 }

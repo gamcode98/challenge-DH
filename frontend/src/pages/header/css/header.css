@@ -2,9 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-.fondoMenu{
-    background-image: url('img/fondomenu.jpg');
-    background-size: cover;
-    background-position: center;
-
-}
