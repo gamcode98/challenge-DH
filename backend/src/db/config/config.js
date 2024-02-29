@@ -3,7 +3,7 @@ const { dbHost, dbUser, dbPass, dbName } = require('../../config/config')
 module.exports = {
   development: {
     username: dbUser,
-    password: dbPass,
+    password: null,
     database: dbName,
     host: dbHost,
     dialect: 'mysql'
