@@ -14,9 +14,15 @@ const createMany = async (data) => {
   return applicants
 }
 
+const create = async (data) => {
+  const applicant = await Applicant.create(data)
+  return applicant
+}
+
 const applicantService = {
   findAll,
-  createMany
+  createMany,
+  create
 }
 
 module.exports = { applicantService }

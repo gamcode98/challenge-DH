@@ -1,4 +1,6 @@
 const { applicantService } = require('../services/applicant.services')
+const { handleUpload } = require('../utils/cloudinary.handler')
+const { FOLDER_STORAGE } = require('../utils/constants')
 
 const findAll = async (req, res) => {
   try {
@@ -23,8 +25,39 @@ const findAll = async (req, res) => {
   }
 }
 
+const create = async (req, res) => {
+  try {
+    const { body, file } = req
+
+    const cldRes = await handleUpload(file, FOLDER_STORAGE.APPLICANTS)
+
+    const data = await applicantService.create({
+      ...body,
+      image: cldRes.secure_url
+    })
+
+    res.status(201).json({
+      meta: {
+        error: false,
+        count: 1,
+        statusCode: res.statusCode,
+        url: '/applicants',
+        message: 'Aspirante creado exitosamente'
+      },
+      data
+    })
+  } catch (error) {
+    console.error('Error: ', error)
+    res.status(500).json({
+      statusCode: res.statusCode,
+      message: 'Server error'
+    })
+  }
+}
+
 const applicantController = {
-  findAll
+  findAll,
+  create
 }
 
 module.exports = { applicantController }
