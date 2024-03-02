@@ -9,10 +9,13 @@ function App(){
   return(
     <div>
       <Header/>
-      <ApplicantList/>
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path='/applicantList' element={<ApplicantList />} />
+      </Routes>
       <Footer/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
