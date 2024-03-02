@@ -2,3 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.cuadro-applicant{
+    margin-top: 70px;
+}
+
+.name-applicant{
+    margin-top: 100px;
+    text-align: center;
+    font-size: 27px;
+}
