@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 function Header () {
   return (
     <>
-      <header className='fixed top-0 left-0 w-full flex justify-between items-center p-4 bg-white bg-opacity-70'>
+      <header className='fixed top-0 left-0 w-full flex justify-between items-center p-4 bg-white bg-opacity-70 z-10'>
         <nav>
           <ul className='flex'>
             <li className='mr-4'>Inicio</li>

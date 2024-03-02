@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
-import Header from './pages/header/Header.jsx'
-import Home from './pages/home/Home.jsx'
-import ApplicantList from './pages/applicants-list/applicant.jsx'
-import Footer from './pages/footer/Footer.jsx'
-import Applicant from './pages/applicant/applicant.jsx'
-// import ApplicantForm from './pages/applicant-form/ApplicantForm.jsx'
+import Header from './pages/header/Header'
+import Home from './pages/home/Home'
+import Footer from './pages/footer/Footer'
+import Applicant from './pages/applicant/applicant'
+import ApplicantList from './pages/applicants-list/ApplicantList'
+import ApplicantForm from './pages/applicant-form/ApplicantForm'
 
 function App () {
   return (
@@ -12,8 +12,9 @@ function App () {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/applicantList' element={<ApplicantList />} />
+        <Route path='/applicants' element={<ApplicantList />} />
         <Route path='/applicant' element={<Applicant />} />
+        <Route path='/create-applicant' element={<ApplicantForm />} />
       </Routes>
       <Footer />
     </div>

@@ -41,7 +41,7 @@ function ApplicantForm () {
   }
 
   return (
-    <div className='w-full md:w-1/2 lg:w-2/3 mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mt-24'>
+    <div className='w-full md:w-1/2 lg:w-2/3 mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mt-24 mb-24'>
 
       <h2 className='text-3xl mb-4'>¡Bienvenido a Recruiting!</h2>
       <h3 className='text-xl mb-4'>Por favor, complete los siguientes datos</h3>
