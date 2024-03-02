@@ -24,12 +24,12 @@ export const schema = yup.object({
     .max(8, 'El DNI solo debe tener 8 digitos'),
   gender: yup.string().required('El genero es requerido')
     .oneOf(['mujer', 'hombre'], 'El genero no es valido'),
-  dob: yup.string().required('La fecha de nacimiento es requerida')
+  birthdate: yup.string().required('La fecha de nacimiento es requerida')
     .typeError('La fecha de nacimiento es requerida')
     .matches(/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/, 'Fecha inválida'),
   image: yup
     .mixed()
-    .required('Required')
+    .required('La imagen es requerida')
     .test('is-valid-type', 'Formato de imagen inválido',
       value => isValidFileType(value && value.name.toLowerCase(), 'image'))
 }).required()

@@ -1,13 +1,15 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { DatePicker, FileField, SelectField, TextField } from '../../components'
-import { formatDateString } from '../../utils'
+import { Alert, DatePicker, FileField, SelectField, Spinner, TextField } from '../../components'
+import { createDateFromFormat } from '../../utils'
 import { useApplicant } from './hooks'
 import { genders, schema } from './utils'
 import '../header/css/header.css'
+import { useAlert } from '../../hooks'
 
 function ApplicantForm () {
-  const { createApplicant, isLoading } = useApplicant()
+  const { alert, handleCloseAlert, handleShowAlert } = useAlert()
+  const { createApplicant, isLoading } = useApplicant({ handleShowAlert })
 
   const { handleSubmit, control } = useForm({
     defaultValues: {
@@ -17,35 +19,37 @@ function ApplicantForm () {
       cellphone: '',
       dni: '',
       gender: '',
-      dob: '',
+      birthdate: '',
       image: ''
     },
-    resolver: yupResolver(schema),
-    mode: 'onChange'
+    resolver: yupResolver(schema)
   })
 
   const onSubmit = data => {
-    const form = new FormData()
+    const formData = new FormData()
 
-    const formattedDate = formatDateString(data.dob)
+    const formattedDate = createDateFromFormat(data.birthdate)
 
     Object.entries({
       ...data,
       birthdate: formattedDate
     }).forEach(([key, value]) => {
-      form.append(key, value)
+      formData.append(key, value)
     })
 
-    // createApplicant(form)
+    createApplicant(formData)
   }
 
   return (
-    <div className='mt-20 w-11/12 mx-auto'>
+    <div className='w-full md:w-1/2 lg:w-2/3 mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mt-24'>
 
       <h2 className='text-3xl mb-4'>¡Bienvenido a Recruiting!</h2>
-      <h3 className='text-xl'>Por favor, complete los siguientes datos</h3>
+      <h3 className='text-xl mb-4'>Por favor, complete los siguientes datos</h3>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className='grid grid-cols-1 lg:grid-cols-2 gap-4'
+      >
 
         <TextField
           control={control}
@@ -99,7 +103,7 @@ function ApplicantForm () {
 
         <DatePicker
           control={control}
-          name='dob'
+          name='birthdate'
           rules={{ required: true }}
           forId='dob'
           labelText='Fecha de nacimiento'
@@ -126,17 +130,27 @@ function ApplicantForm () {
 
         <button
           type='submit'
-          className='border rounded p-2'
+          className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center mt-3 w-fit'
           disabled={isLoading}
         >
           {
             isLoading
-              ? 'Cargando...'
-              : 'Enviar'
+              ? (
+                <>
+                  <Spinner />
+                  Enviando...
+                </>
+                )
+              : 'Guardar'
           }
         </button>
 
       </form>
+
+      <Alert
+        alert={alert}
+        handleCloseAlert={handleCloseAlert}
+      />
     </div>
   )
 }

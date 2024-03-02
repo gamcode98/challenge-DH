@@ -15,15 +15,7 @@ export function FileField (props) {
     e.stopPropagation()
   }
 
-  const upload = (file) => {
-    console.log('file', file)
-    field.onChange(file)
-    // const formData = new FormData()
-
-    // if (file !== undefined) {
-    //   formData.append('image', file)
-    // }
-  }
+  const upload = (file) => { field.onChange(file) }
 
   const handleDrop = (e) => {
     e.preventDefault()
