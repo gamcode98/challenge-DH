@@ -55,9 +55,35 @@ const create = async (req, res) => {
   }
 }
 
+const findAllByQuery = async (req, res) => {
+  try {
+    const { applicant } = req.query
+
+    const data = await applicantService.findAllByQuery(applicant)
+
+    res.status(200).json({
+      meta: {
+        error: false,
+        count: data.length,
+        statusCode: res.statusCode,
+        url: '/applicants',
+        message: 'Appirantes cargados exitosamente'
+      },
+      data
+    })
+  } catch (error) {
+    console.error('Error: ', error)
+    res.status(500).json({
+      statusCode: res.statusCode,
+      message: 'Server error'
+    })
+  }
+}
+
 const applicantController = {
   findAll,
-  create
+  create,
+  findAllByQuery
 }
 
 module.exports = { applicantController }

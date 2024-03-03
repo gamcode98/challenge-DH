@@ -9,6 +9,11 @@ applicantRouter.get(
   applicantController.findAll
 )
 
+applicantRouter.get(
+  '/find',
+  applicantController.findAllByQuery
+)
+
 applicantRouter.post(
   '/',
   upload.single('image'),

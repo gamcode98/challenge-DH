@@ -1,4 +1,5 @@
 const { Profession, Applicant } = require('../db/models')
+const { Op } = require('sequelize')
 
 const findAll = async () => {
   const professions = await Profession.findAll(
@@ -16,9 +17,22 @@ const createMany = async (data) => {
   return professions
 }
 
+const findAllByQuery = async (query) => {
+  const professions = await Profession.findAll({
+    where: {
+      name: {
+        [Op.like]: `%${query}%`
+      }
+    }
+  })
+
+  return professions
+}
+
 const professionsService = {
   findAll,
-  createMany
+  createMany,
+  findAllByQuery
 }
 
 module.exports = { professionsService }
