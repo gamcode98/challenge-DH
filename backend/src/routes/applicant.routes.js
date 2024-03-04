@@ -13,7 +13,10 @@ applicantRouter.get(
   '/find',
   applicantController.findAllByQuery
 )
-
+applicantRouter.get(
+  '/:id',
+  applicantController.findOneById
+)
 applicantRouter.post(
   '/',
   upload.single('image'),
