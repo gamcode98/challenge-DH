@@ -12,6 +12,17 @@ const findAll = async () => {
   return professions
 }
 
+const findManyById = async (ids) => {
+  const professions = await Profession.findAll({
+    where: {
+      id: {
+        [Op.in]: ids
+      }
+    }
+  })
+  return professions
+}
+
 const createMany = async (data) => {
   const professions = await Profession.bulkCreate(data)
   return professions
@@ -32,7 +43,8 @@ const findAllByQuery = async (query) => {
 const professionsService = {
   findAll,
   createMany,
-  findAllByQuery
+  findAllByQuery,
+  findManyById
 }
 
 module.exports = { professionsService }
