@@ -4,7 +4,7 @@ import { Alert, DatePicker, FileField, SelectField, Spinner, TextField } from '.
 import { createDateFromFormat } from '../../utils'
 import { useApplicant } from './hooks'
 import { genders, schema } from './utils'
-import '../header/css/header.css'
+
 import { useAlert } from '../../hooks'
 
 function ApplicantForm () {
