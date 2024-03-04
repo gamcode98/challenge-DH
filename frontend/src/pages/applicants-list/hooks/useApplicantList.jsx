@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { getApplicantsApi } from '../services'
+import { useApplicants } from '../../../../hooks/useApplicants'
 
-export function useApplicants () {
-  const [applicants, setApplicants] = useState([])
+export function useApplicantList () {
+  const { applicants, setApplicants } = useApplicants()
   const [isLoading, setIsLoading] = useState(false)
 
   const getApplicants = async () => {
@@ -20,7 +21,9 @@ export function useApplicants () {
   }
 
   useEffect(() => {
-    getApplicants()
+    if (applicants.length === 0) {
+      getApplicants()
+    }
   }, [])
 
   return {

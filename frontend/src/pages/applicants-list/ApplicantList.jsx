@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom'
 import { SearchInput } from '../../components/SearchInput'
-import { useApplicants } from './hooks/useApplicants'
-import { useFindApplicants } from './hooks/useFindApplicants'
+import { useApplicantList, useFindApplicants } from './hooks'
 import { Spinner } from '../../components/Spinner'
 
 function ApplicantList () {
   const {
-    applicants,
-    setApplicants
-  } = useApplicants()
+    applicants
+  } = useApplicantList()
 
   const {
     findApplicantsByQuery,
     isLoading
-  } = useFindApplicants({ handleApplicants: setApplicants })
+  } = useFindApplicants({
+    isNavigating: false
+  })
 
   if (isLoading) {
     return <Spinner />
@@ -21,13 +21,14 @@ function ApplicantList () {
 
   return (
     <div className='mt-20 flex flex-col items-center mb-24'>
-      <form className='mb-8 w-[50%]'>
+      <div className='mb-8 w-[50%]'>
         <SearchInput
           onSearch={findApplicantsByQuery}
           buttonText='Buscar'
           placeholder='Buscar por nombre...'
         />
-      </form>
+      </div>
+
       <div className='w-11/12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
         {applicants && applicants.map((applicant) => (
           <div key={applicant.id} className='p-4 bg-gray-200 rounded items-center'>
