@@ -1,4 +1,5 @@
 const { applicantService } = require('../services/applicant.services')
+const { professionsService } = require('../services/professions.services')
 const { handleUpload } = require('../utils/cloudinary.handler')
 const { FOLDER_STORAGE } = require('../utils/constants')
 
@@ -27,14 +28,35 @@ const findAll = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const { body, file } = req
+    const {
+      body: {
+        firstName,
+        lastName,
+        email,
+        cellphone,
+        dni,
+        gender,
+        birthdate,
+        professionsId
+      }, file
+    } = req
+
+    const professions = await professionsService.findManyById(professionsId)
 
     const cldRes = await handleUpload(file, FOLDER_STORAGE.APPLICANTS)
 
     const data = await applicantService.create({
-      ...body,
+      firstName,
+      lastName,
+      email,
+      cellphone,
+      dni,
+      gender,
+      birthdate,
       image: cldRes.secure_url
     })
+
+    await data.addProfession(professions)
 
     res.status(201).json({
       meta: {

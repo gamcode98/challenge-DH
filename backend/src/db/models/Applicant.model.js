@@ -43,6 +43,11 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.DATE,
       allowNull: false
     },
+    linkedinUrl: {
+      type: dataTypes.STRING(255),
+      allowNull: false,
+      field: 'linkedin_url'
+    },
     dni: {
       type: dataTypes.STRING(255),
       allowNull: false

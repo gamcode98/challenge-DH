@@ -5,6 +5,7 @@ import Footer from './pages/footer/Footer'
 import Applicant from './pages/applicant/applicant'
 import ApplicantList from './pages/applicants-list/ApplicantList'
 import ApplicantForm from './pages/applicant-form/ApplicantForm'
+import { ProfessionAssignment } from './pages/profession-assignment/ProfessionAssignment'
 
 function App () {
   return (
@@ -15,6 +16,7 @@ function App () {
         <Route path='/applicants' element={<ApplicantList />} />
         <Route path='/applicant/:id' element={<Applicant />} />
         <Route path='/create-applicant' element={<ApplicantForm />} />
+        <Route path='/profession-assignment' element={<ProfessionAssignment />} />
       </Routes>
       <Footer />
     </div>

@@ -1,5 +1,5 @@
 import '../home/Home'
-import '../header/css/header.css'
+
 
 function Home () {
   return (
