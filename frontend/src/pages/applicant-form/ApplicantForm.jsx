@@ -33,13 +33,25 @@ function ApplicantForm () {
       gender: '',
       birthdate: '',
       image: '',
+      linkedinUrl: '',
       professions: []
     },
     resolver: yupResolver(schema)
   })
 
   const onSubmit = data => {
-    const { firstName, lastName, email, cellphone, dni, gender, birthdate, image, professions } = data
+    const {
+      firstName,
+      lastName,
+      email,
+      cellphone,
+      dni,
+      gender,
+      birthdate,
+      image,
+      professions,
+      linkedinUrl
+    } = data
 
     const formData = new FormData()
 
@@ -53,6 +65,7 @@ function ApplicantForm () {
       dni,
       gender,
       image,
+      linkedinUrl,
       birthdate: formattedDate
     }).forEach(([key, value]) => {
       formData.append(key, value)
@@ -128,6 +141,16 @@ function ApplicantForm () {
             typeOfInput='number'
             placeholder='Ingresa el número de DNI sin puntos ni espacios'
             labelText='DNI'
+          />
+
+          <TextField
+            control={control}
+            name='linkedinUrl'
+            rules={{ required: true }}
+            labelId='linkedinUrl'
+            typeOfInput='text'
+            placeholder='Ingresa la url de LinkedIn'
+            labelText='URL de LinkedIn'
           />
 
           <DatePicker

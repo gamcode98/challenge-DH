@@ -7,6 +7,7 @@ CREATE TABLE `applicants` (
    `cellphone` VARCHAR(255),
    `image` VARCHAR(255),
    `gender` VARCHAR(100),
+   `linkedin_url` VARCHAR(255),
    `birthdate` DATE,
    `created_at` DATE,
    `updated_at` DATE,

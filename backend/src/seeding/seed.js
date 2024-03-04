@@ -22,6 +22,12 @@ const seed = async () => {
 
     const { results } = await data.json()
 
+    const linkedinUrls = [
+      'https://www.linkedin.com/in/micaela-zerpa-1097b0237',
+      'https://www.linkedin.com/in/gabriel-alejandro-mamani',
+      'https://www.linkedin.com/in/carolina-cortez-9640902b5/'
+    ]
+
     const applicants = results.map((item) => {
       return {
         firstName: item.name.first,
@@ -31,7 +37,8 @@ const seed = async () => {
         gender: item.gender,
         birthdate: item.dob.date,
         cellphone: item.cell,
-        dni: faker.number.int({ min: 10000000, max: 99999999 }).toString()
+        dni: faker.number.int({ min: 10000000, max: 99999999 }).toString(),
+        linkedinUrl: linkedinUrls[faker.number.int({ min: 0, max: linkedinUrls.length - 1 })]
       }
     })
 

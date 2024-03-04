@@ -32,6 +32,10 @@ export const schema = yup.object({
     .required('La imagen es requerida')
     .test('is-valid-type', 'Formato de imagen inválido',
       value => isValidFileType(value && value.name.toLowerCase(), 'image')),
+  linkedinUrl: yup
+    .string()
+    .url('Ingresa una url valida')
+    .required('La url de LinkedIn es requerida'),
   professions: yup
     .array()
     .min(1, 'Se requiere al menos una profesiónsss')
