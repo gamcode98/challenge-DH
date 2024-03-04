@@ -1,28 +1,35 @@
-
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { SearchInput } from '../../components/SearchInput'
+import { useApplicants } from './hooks/useApplicants'
+import { useFindApplicants } from './hooks/useFindApplicants'
+import { Spinner } from '../../components/Spinner'
 
 function ApplicantList () {
-  const [applicants, setApplicants] = useState([])
+  const {
+    applicants,
+    setApplicants
+  } = useApplicants()
 
-  useEffect(() => {
-    fetch('http://localhost:3000/api/v1/applicants')
-      .then((response) => response.json())
-      .then((data) => setApplicants(data))
-      .catch((error) => console.log(error))
-  }, [])
+  const {
+    findApplicantsByQuery,
+    isLoading
+  } = useFindApplicants({ handleApplicants: setApplicants })
+
+  if (isLoading) {
+    return <Spinner />
+  }
 
   return (
     <div className='mt-20 flex flex-col items-center mb-24'>
-      <form action='#' method='get' className='mb-8 w-[50%]'>
-        <input
-          type='text'
-          placeholder='Buscar...'
-          className='w-full p-2 border border-gray-300 rounded'
+      <form className='mb-8 w-[50%]'>
+        <SearchInput
+          onSearch={findApplicantsByQuery}
+          buttonText='Buscar'
+          placeholder='Buscar por nombre...'
         />
       </form>
       <div className='w-11/12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-        {applicants.data?.map((applicant) => (
+        {applicants && applicants.map((applicant) => (
           <div key={applicant.id} className='p-4 bg-gray-200 rounded items-center'>
             <Link to='/' className='group'>
               <div className='aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7'>
@@ -44,7 +51,7 @@ function ApplicantList () {
               ))}
               <div className='flex items-center'>
                 <button
-                  class='flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200'
+                  className='flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200'
                   type='button'
                   aria-label='Like'
                 >
@@ -64,7 +71,7 @@ function ApplicantList () {
                   </svg>
                 </button>
                 <button
-                  class='flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200'
+                  className='flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200'
                   type='button'
                   aria-label='Like'
                 >

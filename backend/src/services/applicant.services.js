@@ -23,9 +23,12 @@ const create = async (data) => {
 const findAllByQuery = async (query) => {
   const applicants = await Applicant.findAll({
     where: {
-      name: {
+      firstName: {
         [Op.like]: `%${query}%`
       }
+    },
+    include: {
+      model: Profession
     }
   })
 
