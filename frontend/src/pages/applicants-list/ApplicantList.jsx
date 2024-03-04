@@ -1,9 +1,10 @@
 import '../header/css/header.css'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function ApplicantList () {
   const [applicants, setApplicants] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch('http://localhost:3000/api/v1/applicants')
@@ -11,6 +12,10 @@ function ApplicantList () {
       .then((data) => setApplicants(data))
       .catch((error) => console.log(error))
   }, [])
+
+  const goToApplicant = (id) => {
+    navigate(`/applicant/${id}`)
+  }
 
   return (
     <div className='mt-20 flex flex-col items-center mb-24'>
@@ -24,13 +29,13 @@ function ApplicantList () {
       <div className='w-11/12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
         {applicants.data?.map((applicant) => (
           <div key={applicant.id} className='p-4 bg-gray-200 rounded items-center'>
-            <Link to='/' className='group'>
-              <div className='aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7'>
+            <div className='group'>
+              <button onClick={() => goToApplicant(applicant.id)} className='aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7'>
                 <img
                   src={applicant.image}
                   className='h-full w-full object-cover object-center group-hover:opacity-75'
                 />
-              </div>
+              </button>
               <h3 className='font-bold mt-2 flex items-center justify-center'>
                 {applicant.firstName} {applicant.lastName}
               </h3>
@@ -42,7 +47,7 @@ function ApplicantList () {
                   {profession.name}
                 </p>
               ))}
-              <div className='flex items-center'>
+              <div className='flex justify-center mt-6'>
                 <button
                   class='flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200'
                   type='button'
@@ -84,7 +89,7 @@ function ApplicantList () {
                   </svg>
                 </button>
               </div>
-            </Link>
+            </div>
           </div>
         ))}
       </div>
