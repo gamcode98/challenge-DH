@@ -13,7 +13,7 @@ function App () {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/applicants' element={<ApplicantList />} />
-        <Route path='/applicant' element={<Applicant />} />
+        <Route path='/applicant/:id' element={<Applicant />} />
         <Route path='/create-applicant' element={<ApplicantForm />} />
       </Routes>
       <Footer />

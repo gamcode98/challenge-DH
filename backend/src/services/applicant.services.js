@@ -32,11 +32,18 @@ const findAllByQuery = async (query) => {
   return applicants
 }
 
+const findOneById = async (id) => {
+  const applicant = await Applicant.findByPk(id)
+
+  return applicant
+}
+
 const applicantService = {
   findAll,
   createMany,
   create,
-  findAllByQuery
+  findAllByQuery,
+  findOneById
 }
 
 module.exports = { applicantService }

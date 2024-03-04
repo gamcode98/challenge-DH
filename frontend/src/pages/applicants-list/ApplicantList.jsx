@@ -1,6 +1,6 @@
 import '../header/css/header.css'
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function ApplicantList () {
   const [applicants, setApplicants] = useState([])

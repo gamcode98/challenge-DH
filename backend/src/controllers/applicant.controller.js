@@ -79,11 +79,35 @@ const findAllByQuery = async (req, res) => {
     })
   }
 }
+const findOneById = async (req, res) => {
+  try {
+    const { id } = req.params
+    const data = await applicantService.findOneById(id)
+
+    res.status(200).json({
+      meta: {
+        error: false,
+        count: data.length,
+        statusCode: res.statusCode,
+        url: '/applicants',
+        message: 'Aspirante cargado exitosamente'
+      },
+      data
+    })
+  } catch (error) {
+    console.error('Error: ', error)
+    res.status(500).json({
+      statusCode: res.statusCode,
+      message: 'Server error de uno'
+    })
+  }
+}
 
 const applicantController = {
   findAll,
   create,
-  findAllByQuery
+  findAllByQuery,
+  findOneById
 }
 
 module.exports = { applicantController }
