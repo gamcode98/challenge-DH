@@ -14,9 +14,7 @@ export function SearchInput (props) {
   } = props
 
   const handleSearch = () => {
-    if (inputRef.current.value.trim() !== '') {
-      onSearch(inputRef.current.value)
-    }
+    onSearch(inputRef.current.value)
   }
 
   return (

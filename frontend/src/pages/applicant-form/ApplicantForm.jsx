@@ -6,7 +6,6 @@ import { useApplicant, useFindProfessions } from './hooks'
 import { genders, schema } from './utils'
 import { useAlert } from '../../hooks'
 import { ProfessionList } from './components/ProfessionList'
-import '../header/css/header.css'
 
 function ApplicantForm () {
   const { alert, handleCloseAlert, handleShowAlert } = useAlert()

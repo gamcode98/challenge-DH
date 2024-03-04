@@ -37,7 +37,8 @@ const create = async (req, res) => {
         dni,
         gender,
         birthdate,
-        professionsId
+        professionsId,
+        linkedinUrl
       }, file
     } = req
 
@@ -53,6 +54,7 @@ const create = async (req, res) => {
       dni,
       gender,
       birthdate,
+      linkedinUrl,
       image: cldRes.secure_url
     })
 

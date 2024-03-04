@@ -4,7 +4,7 @@ const { applicantService } = require('../services/applicant.services')
 const { professionsService } = require('../services/professions.services')
 
 const seed = async () => {
-  const limit = 10
+  const limit = 20
 
   const url = `https://randomuser.me/api/1.4/?page=2&results=${limit}&seed=applicants&inc=gender,name,email,cell,picture,dob`
 
@@ -28,13 +28,18 @@ const seed = async () => {
       'https://www.linkedin.com/in/carolina-cortez-9640902b5/'
     ]
 
+    const genders = {
+      male: 'Masculino',
+      female: 'Femenino'
+    }
+
     const applicants = results.map((item) => {
       return {
         firstName: item.name.first,
         lastName: item.name.last,
         email: item.email,
         image: item.picture.large,
-        gender: item.gender,
+        gender: genders[item.gender],
         birthdate: item.dob.date,
         cellphone: item.cell,
         dni: faker.number.int({ min: 10000000, max: 99999999 }).toString(),
