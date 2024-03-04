@@ -1,4 +1,5 @@
 import './css/header.css'
+import { Link } from "react-router-dom";
 import { Outlet } from 'react-router-dom'
 
 function Header () {
@@ -7,9 +8,9 @@ function Header () {
       <header className='fixed top-0 left-0 w-full flex justify-between items-center p-4 bg-white bg-opacity-70 z-10'>
         <nav className='hidden md:block'>
           <ul className='flex'>
-            <li className='mr-4'>Inicio</li>
-            <li className='mr-4'>Lista</li>
-            <li>Agregar Aplicante</li>
+            <Link to="/"><li className='mr-4'>Inicio</li></Link>
+            <Link to="/applicants"><li className='mr-4'>Lista</li></Link>
+            <Link to="/create-applicant"><li>Agregar Aplicante</li></Link>
           </ul>
         </nav>
         <div>
