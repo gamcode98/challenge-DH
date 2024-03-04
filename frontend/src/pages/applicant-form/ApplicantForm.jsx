@@ -59,7 +59,7 @@ function ApplicantForm () {
     })
 
     professions.forEach(profession => {
-      formData.append('professionId', profession.id)
+      formData.append('professionsId', profession.id)
     })
 
     formData.forEach((value, key) => {
