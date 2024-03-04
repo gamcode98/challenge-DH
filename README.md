@@ -57,6 +57,9 @@
 ## **INSTRUCCIONES PARA INICIAR EL PROYECTO**
 
 1- Crear la base de datos en tu programa de confianza, en esta vas a cargar el script que se hallara en backend/sqlScript.
+
 2- Ahora, en tu editor de código de confianza vas a instalar las dependencias señaladas para que el código funciones. Recuerda que Backend tiene unas y el Frontend tiene otras. 
+
 3- Una vez instaladas las dependencias vas a acceder al backend desde la terminal, ahí vas a poner el siguiente comando: **"npm run db:seed"** para así cargar con valores nuestra base de datos. 
+
 4- Luego, tendrás que acceder al Frontend desde la terminal y ahí usar el siguiente comando para acceder a la pagina: **"npm run dev"**
